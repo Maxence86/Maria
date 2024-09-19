@@ -81,17 +81,18 @@ function SpectacleDetail({ spectacle, onClose }: { spectacle: SpectacleType; onC
       className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
       onClick={handleClose}
     >
-      <div className="bg-zinc-600 p-6 rounded-lg shadow-lg w-[90%] sm:w-[600px] relative">
+      <div className="bg-zinc-600 p-6 rounded-lg shadow-lg w-[90%] sm:w-[600px] md:w-[700px] lg:w-[800px] relative">
         <button onClick={onClose} className="absolute top-2 right-2 text-gray-600 hover:text-gray-900">
           X
         </button>
-        <Image
-          src={spectacle.imageUrl}
-          alt={spectacle.title}
-          width={600}
-          height={400}
-          className="rounded-lg mb-4"
-        />
+        <div className="relative w-full h-0 pb-[56.25%] mb-4"> {/* 16:9 aspect ratio */}
+          <Image
+            src={spectacle.imageUrl}
+            alt={spectacle.title}
+            fill
+            className="rounded-lg object-cover"
+          />
+        </div>
         <h3 className="text-2xl font-bold mb-2">{spectacle.title}</h3>
         <p className="text-white mb-4">{spectacle.description}</p>
         <p className="text-white">Date : {spectacle.date}</p>
