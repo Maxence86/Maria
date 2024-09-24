@@ -1,6 +1,13 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+
+// Désactiver l'ajout automatique du CSS par FontAwesome
+config.autoAddCss = false;
 
 // Définir un type pour les vidéos
 type VideoType = {
@@ -15,6 +22,14 @@ type SpectacleType = {
   title: string;
   date: string;
   location: string;
+  imageUrl: string;
+  description: string;
+};
+
+// Définir un type pour les membres de la troupe
+type TroupeMemberType = {
+  id: number;
+  name: string;
   imageUrl: string;
   description: string;
 };
@@ -102,6 +117,23 @@ function SpectacleDetail({ spectacle, onClose }: { spectacle: SpectacleType; onC
   );
 }
 
+// Composant pour afficher les membres de la troupe
+function TroupeMember({ member }: { member: TroupeMemberType }) {
+  return (
+    <div className="flex-shrink-0 w-[300px] border rounded-lg shadow-lg bg-zinc-600 p-6">
+      <Image
+        src={member.imageUrl}
+        alt={member.name}
+        width={400}
+        height={250}
+        className="rounded-lg"
+      />
+      <h3 className="mt-4 text-2xl font-semibold text-gray-800">{member.name}</h3>
+      <p className="mt-2 text-white">{member.description}</p>
+    </div>
+  );
+}
+
 // Page d'accueil avec les sections mises à jour
 export default function Home() {
   const [selectedSpectacle, setSelectedSpectacle] = useState<SpectacleType | null>(null);
@@ -115,43 +147,57 @@ export default function Home() {
       imageUrl: "/img/Unknown-2.jpg",
       description: "Un magnifique spectacle mettant en vedette de célèbres acteurs.",
     },
-    {
-      id: 2,
-      title: "Spectacle 2",
-      date: "25 Septembre 2024",
-      location: "Salle ABC",
-      imageUrl: "/img/Unknown-2.jpg",
-      description: "Un spectacle captivant avec une performance incroyable.",
-    },
-    {
-      id: 2,
-      title: "Spectacle 2",
-      date: "25 Septembre 2024",
-      location: "Salle ABC",
-      imageUrl: "/img/Unknown-2.jpg",
-      description: "Un spectacle captivant avec une performance incroyable.",
-    },
-    {
-      id: 2,
-      title: "Spectacle 2",
-      date: "25 Septembre 2024",
-      location: "Salle ABC",
-      imageUrl: "/img/Unknown-2.jpg",
-      description: "Un spectacle captivant avec une performance incroyable.",
-    },
-    {
-      id: 2,
-      title: "Spectacle 2",
-      date: "25 Septembre 2024",
-      location: "Salle ABC",
-      imageUrl: "/img/Unknown-2.jpg",
-      description: "Un spectacle captivant avec une performance incroyable.",
-    },
   ];
+
+  const troupeMembers: TroupeMemberType[] = [
+    {
+      id: 1,
+      name: "Artiste 1",
+      imageUrl: "/img/llama1.jpg",
+      description: "Un artiste talentueux avec de nombreuses années d'expérience.",
+    },
+    {
+      id: 2,
+      name: "Artiste 2",
+      imageUrl: "/img/llama2.jpg",
+      description: "Un artiste renommé dans le monde du spectacle.",
+    },
+    {
+      id: 2,
+      name: "Artiste 3",
+      imageUrl: "/img/llama.jpg",
+      description: "Un artiste renommé dans le monde du spectacle.",
+    },
+    {
+      id: 2,
+      name: "Artiste 4",
+      imageUrl: "/img/llama3.jpg",
+      description: "Un artiste renommé dans le monde du spectacle.",
+    },
+    {
+      id: 2,
+      name: "Artiste 5",
+      imageUrl: "/img/llama4.jpg",
+      description: "Un artiste renommé dans le monde du spectacle.",
+    },
+    {
+      id: 2,
+      name: "Artiste 6",
+      imageUrl: "/img/artiste2.jpg",
+      description: "Un artiste renommé dans le monde du spectacle.",
+    },
+
+   //ajoute des artistes ici suis le schema des autres et oublie pas les virgules
+
+  ];
+
+   //pour les liens youtube le schema "https://www.youtube.com/embed/" ne dois pas changer
+   //regarde l'url de la video que tu veux mettre et copie/colle ce qui suis après "watch?v=" 
+   //suis le schema comme ci dessous sans oublier les virgules 
 
   const videoData: VideoType[] = [
     { id: 1, title: "Vidéo 1", url: "https://www.youtube.com/embed/wrFsapf0Enk" },
-    { id: 2, title: "Spectacle 2", url: "https://www.youtube.com/embed/K1_LQEuw0L4" },
+    { id: 2, title: "Spectacle 2", url: "https://www.youtube.com/embed/JHib5QvAADc" },
     { id: 3, title: "Spectacle 3", url: "https://www.youtube.com/embed/K1_LQEuw0L4" },
   ];
 
@@ -159,16 +205,20 @@ export default function Home() {
     <div className="min-h-screen bg-zinc-600 text-white p-4">
       {/* Header */}
       <header className="bg-zinc-800 text-white py-8 text-center rounded-lg mb-8">
-        <h1 className="text-6xl font-bold">INDÉSCIE</h1>
-        <p className="mt-4 text-xl">
-          Promouvoir la culture à travers spectacles, photos, vidéos et événements
-        </p>
+        {/* <h1 className="text-6xl font-bold">INDÉSCIE</h1> */}
+        <Image
+          src="/img/indecis.png"
+          alt="Photo 1"
+          width={400}
+          height={300}
+          className="rounded-lg shadow-md mx-auto"
+        />
       </header>
 
       {/* Section des Spectacles */}
       <section className="py-12 px-8 bg-zinc-800 rounded-lg mb-8">
-        <h2 className="text-3xl font-semibold text-center mb-8">Prochains Spectacles</h2>
-        <div className="flex gap-8 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 pb-4">
+        <h2 className="text-3xl font-semibold text-center mb-8">Créations</h2>
+        <div className="flex justify-center gap-8 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 pb-4">
           {spectacles.map((spectacle) => (
             <div
               key={spectacle.id}
@@ -181,9 +231,9 @@ export default function Home() {
                 height={250}
                 className="rounded-lg"
               />
-              <h3 className="mt-4 text-2xl font-semibold text-gray-800">{spectacle.title}</h3>
-              <p className="mt-2 text-white">Date: {spectacle.date}</p>
-              <p className="mt-1 text-white">Lieu: {spectacle.location}</p>
+              <h3 className="mt-4 text-2xl font-semibold text-gray-800 text-center">{spectacle.title}</h3> {/* Centrage du texte */}
+              <p className="mt-2 text-white text-center">Date: {spectacle.date}</p>
+              <p className="mt-1 text-white text-center">Lieu: {spectacle.location}</p>
               <button
                 onClick={() => setSelectedSpectacle(spectacle)}
                 className="mt-4 inline-block text-white hover:underline"
@@ -200,60 +250,37 @@ export default function Home() {
         <SpectacleDetail spectacle={selectedSpectacle} onClose={() => setSelectedSpectacle(null)} />
       )}
 
-      {/* Galerie de Photos */}
+      {/* Section Troupe */}
       <section className="py-12 px-8 bg-zinc-800 rounded-lg mb-8">
-        <h2 className="text-3xl font-semibold text-center mb-8">Galerie Photos</h2>
-        <div className="flex gap-6 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 pb-4">
-          <Image
-            src="/img/Unknown-2.jpg"
-            alt="Photo 1"
-            width={400}
-            height={300}
-            className="rounded-lg shadow-md flex-shrink-0 w-[400px]"
-          />
-          <Image
-            src="/img/Unknown-2.jpg"
-            alt="Photo 2"
-            width={400}
-            height={300}
-            className="rounded-lg shadow-md flex-shrink-0 w-[400px]"
-          />
-          <Image
-            src="/img/Unknown-2.jpg"
-            alt="Photo 2"
-            width={400}
-            height={300}
-            className="rounded-lg shadow-md flex-shrink-0 w-[400px]"
-          />
-          <Image
-            src="/img/Unknown-2.jpg"
-            alt="Photo 2"
-            width={400}
-            height={300}
-            className="rounded-lg shadow-md flex-shrink-0 w-[400px]"
-          />
-          {/* Ajoute plus de photos ici */}
+        <h2 className="text-3xl font-semibold text-center mb-8">Troupe</h2>
+        <div className="flex justify-center gap-8 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 pb-4">
+          {troupeMembers.map((member) => (
+            <TroupeMember key={member.id} member={member} />
+          ))}
         </div>
       </section>
 
-      {/* Section Vidéos avec le composant VideoList */}
-      <section className="py-10 px-8 bg-zinc-800 rounded-lg mb-8">
-        <VideoList videos={videoData} emptyHeading="Aucune vidéo disponible pour le moment." />
+      {/* Section des vidéos */}
+      <section className="py-12 px-8 bg-zinc-800 rounded-lg mb-8">
+        <VideoList videos={videoData} emptyHeading="Aucune vidéo disponible" />
       </section>
 
-      {/* Footer */}
-      <footer className="bg-zinc-600 text-white py-8 text-center rounded-lg">
-        <p>© 2024 Indéscie. Tous droits réservés.</p>
-        <p className="mt-2">Suivez-nous sur les réseaux sociaux</p>
-        <div className="flex justify-center mt-4 space-x-6">
-          <a href="#" className="hover:underline">
-            Facebook
+      {/* Section des icônes réseaux sociaux/footer */}
+      <footer className="bg-zinc-800 text-white py-4 text-center rounded-lg mt-6">
+      <p className="mt-1 text-white text-center mb-6">Suivez nous sur les reseaux</p>
+
+        <div className="flex justify-center gap-6">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faFacebook} size="2x" />
           </a>
-          <a href="#" className="hover:underline">
-            Instagram
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faInstagram} size="2x" />
           </a>
-          <a href="#" className="hover:underline">
-            Twitter
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faTwitter} size="2x" />
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faYoutube} size="2x" />
           </a>
         </div>
       </footer>
