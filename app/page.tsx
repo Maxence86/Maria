@@ -144,9 +144,18 @@ export default function Home() {
       title: "Spectacle 1",
       date: "20 Septembre 2024",
       location: "Théâtre XYZ",
-      imageUrl: "/img/Unknown-2.jpg",
+      imageUrl: "/img/llama.jpg",
       description: "Un magnifique spectacle mettant en vedette de célèbres acteurs.",
     },
+    {
+      id: 1,
+      title: "Spectacle 1",
+      date: "20 Septembre 2024",
+      location: "Théâtre XYZ",
+      imageUrl: "/img/llama.jpg",
+      description: "Un magnifique spectacle mettant en vedette de célèbres acteurs.",
+    },
+    
   ];
 
   const troupeMembers: TroupeMemberType[] = [
@@ -215,35 +224,37 @@ export default function Home() {
         />
       </header>
 
-      {/* Section des Spectacles */}
-      <section className="py-12 px-8 bg-zinc-800 rounded-lg mb-8">
-        <h2 className="text-3xl font-semibold text-center mb-8">Créations</h2>
-        <div className="flex justify-center gap-8 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 pb-4">
-          {spectacles.map((spectacle) => (
-            <div
-              key={spectacle.id}
-              className="flex-shrink-0 w-[300px] border rounded-lg shadow-lg bg-zinc-600 p-6"
-            >
-              <Image
-                src={spectacle.imageUrl}
-                alt={spectacle.title}
-                width={400}
-                height={250}
-                className="rounded-lg"
-              />
-              <h3 className="mt-4 text-2xl font-semibold text-gray-800 text-center">{spectacle.title}</h3> {/* Centrage du texte */}
-              <p className="mt-2 text-white text-center">Date: {spectacle.date}</p>
-              <p className="mt-1 text-white text-center">Lieu: {spectacle.location}</p>
-              <button
-                onClick={() => setSelectedSpectacle(spectacle)}
-                className="mt-4 inline-block text-white hover:underline"
-              >
-                En savoir plus
-              </button>
-            </div>
-          ))}
+{/* Section des Créations */}
+<section className="py-12 px-8 bg-zinc-800 rounded-lg mb-8">
+  <h2 className="text-3xl font-semibold text-center mb-8">Créations</h2>
+  <div className="flex justify-center gap-8 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 pb-4">
+    {spectacles.map((spectacle) => (
+      <div
+        key={spectacle.id}
+        className="flex-shrink-0 w-[400px] border rounded-lg shadow-lg bg-zinc-600 p-6"
+      >
+        <div className="flex justify-center"> {/* Ajout d'un conteneur pour centrer l'image */}
+          <Image
+            src={spectacle.imageUrl}
+            alt={spectacle.title}
+            width={600}
+            height={400}
+            className="rounded-lg"
+          />
         </div>
-      </section>
+        <h3 className="mt-4 text-2xl font-semibold text-gray-800 text-center">{spectacle.title}</h3>
+        <p className="mt-2 text-white text-center">Date: {spectacle.date}</p>
+        <p className="mt-1 text-white text-center">Lieu: {spectacle.location}</p>
+        <button
+          onClick={() => setSelectedSpectacle(spectacle)}
+          className="mt-4 inline-block text-white hover:underline"
+        >
+          En savoir plus
+        </button>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* Afficher le détail du spectacle si sélectionné */}
       {selectedSpectacle && (
