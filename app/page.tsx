@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faInstagram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faInstagram, faTwitter, faYoutube, } from "@fortawesome/free-brands-svg-icons";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 
@@ -134,7 +134,7 @@ function TroupeMember({ member }: { member: TroupeMemberType }) {
   );
 }
 
-// Page d'accueil avec les sections mises à jour
+// Page d'accueil avec les sections
 export default function Home() {
   const [selectedSpectacle, setSelectedSpectacle] = useState<SpectacleType | null>(null);
 
@@ -192,7 +192,7 @@ export default function Home() {
     {
       id: 2,
       name: "Artiste 6",
-      imageUrl: "/img/artiste2.jpg",
+      imageUrl: "/img/llama.jpg",
       description: "Un artiste renommé dans le monde du spectacle.",
     },
 
@@ -263,7 +263,7 @@ export default function Home() {
 
       {/* Section Troupe */}
       <section className="py-12 px-8 bg-zinc-800 rounded-lg mb-8">
-        <h2 className="text-3xl font-semibold text-center mb-8">Troupe</h2>
+        <h2 className="text-3xl font-semibold text-center mb-8">La Troupe</h2>
         <div className="flex justify-center gap-8 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 pb-4">
           {troupeMembers.map((member) => (
             <TroupeMember key={member.id} member={member} />
