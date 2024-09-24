@@ -20,7 +20,8 @@ Le site est principalement composé de 3 sections :
 ### Où sont les fichiers ?
 
 Toutes les images que tu veux afficher sur le site sont placées dans un dossier spécial appelé **`/public/img`**. Donc, si tu veux ajouter une photo d’un artiste ou d’un spectacle, il te faudra la mettre dans ce dossier.
-ps: je te conseil de mettre toutes tes photos au même dimension avant de les glisser dans le dossier pour que cela fasse plus joli sur le site
+
+- PS: je te conseil de mettre toutes tes photos au même dimension avant de les glisser dans le dossier pour que cela fasse plus joli sur le site
 ---
 
 ## 2. **Ajouter/Modifier/Supprimer du texte**
